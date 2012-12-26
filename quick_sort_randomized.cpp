@@ -7,65 +7,18 @@ using namespace std;
 #include "utils/cpputils.h"
 
 void quick_sort(int *a, int start, int end) {
-    //write terminating case here
     if((end-start) <= 1) {
         return;
-    } /*else if((end-start) == 2) {
-        if(a[start]>a[start+1])
-            swap(a[start], a[start+1]);
-        return;
-    } 
-    
-    // Can be added if you dont want to deal with the messy situation of
-    // splitting the array of length three into two parts of length 1 and 0
-    /*
-    else if((end-start) == 3) {
-        //sort manually
-        cout<<"OPPO"<<endl;
-        if(a[start] > a[start+1]) {
-            swap(a[start], a[start+1]);
-            if(a[start+2] < a[start+1]) {
-                if(a[start+2] < a[start]) {
-                    swap(a[start+1], a[start+2]);
-                    swap(a[start], a[start+1]);
-                } else {
-                    swap(a[start+1], a[start+2]);
-                }
-            }
-        }
     }
-    */
-    
+
     //Remove following 5 lines for normal (and not randomized) quicksort
-    srand(time(NULL));                                 
-    int l, m, r;                                       
-    l=m=r=start;    // left, mid, and right            
-    int random_id = (rand()%(end-start))+start;        
-    swap(a[random_id], a[end-1]);                      
+    srand(time(NULL));
+    int m, r;        // mid and right indexes
+    m=r=start;
+    int random_id = (rand()%(end-start))+start;
+    swap(a[random_id], a[end-1]);
     
     int pivot = a[end-1];
-    
-    while(r < end-1) {
-        if(a[r]<pivot) {
-            if(r==start) {
-                m++;
-                r++;
-            } else {
-                swap(a[m], a[r]);
-                m++;
-                r++;
-            }
-        } else {
-            if(r==start) {
-                r++;
-            } else {
-                r++;
-            }
-        }
-    }
-    
-    //Nicer (not necessarily better) version of the above while loop:
-    /*
     while(r < end-1) {
         if(a[r]<pivot) {
             if(r!=start)
@@ -74,7 +27,6 @@ void quick_sort(int *a, int start, int end) {
         }
         r++;
     }
-    */
     
     swap(a[m], a[end-1]);
     
