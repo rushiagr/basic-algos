@@ -9,6 +9,17 @@ void print_vi(vector<int> vect) {
     cout<<endl;
 }
 
+// Print all elements of vector<vector<int> >
+void print_vii(vector<vector<int> > vect) {
+    for(int i=0; i<vect.size(); i++) {
+        for(int j=0; j<vect[0].size(); j++) {
+            cout<<vect[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
+
+
 // Prints a 1 dimensional int array
 void print_arr(int* a, int len) {
     for(int i=0; i<len; i++)
