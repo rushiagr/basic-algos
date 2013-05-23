@@ -1,0 +1,131 @@
+#include<iostream>
+#include<cstdio>
+#include<cstdlib>
+#include<vector>
+using namespace std;
+
+// simple tree node
+struct tnode {
+  int val;
+  struct tnode *left, *right;
+};
+
+struct tnode* newtnode(int value) {
+  struct tnode *newnode = (struct tnode*)malloc(sizeof(struct tnode));
+  newnode->left = NULL;
+  newnode->right = NULL;
+  newnode->val = value;
+  return newnode;
+}
+
+// simple binary search tree
+struct tnode *simpleBST() {
+  struct tnode *root = newtnode(20);
+  root->left = newtnode(8);
+  root->right = newtnode(22);
+  root->left->left = newtnode(4);
+  root->left->right = newtnode(12);
+  root->left->right->left = newtnode(10);
+  root->left->right->right = newtnode(14);
+  return root;
+}
+
+
+// recursive inorder traversal of the tree
+void inorder(struct tnode *t) {
+  if(t->left) 
+    inorder(t->left);
+  printf("%d ", t->val);
+  if(t->right) 
+    inorder(t->right);
+}
+
+// iterative inorder traversal of the tree.
+/*
+SHORT SUMMARY
+Temporary pointer curr will point to not only proper nodes (having data), but also NULLs.
+If curr is not null, DO NOT print it, push it onto the stack (so that we can later access the right subtree),
+and then go to the left child
+If curr is null, and the stack is not empty,
+take the top value of the stack, print it, and then make its right child curr, and then pop out the top value from stack
+if stack becomes empty, done = 1!
+*/
+void inorderit(struct tnode *t){
+  vector<tnode*> stack;
+  struct tnode *curr = t;
+  bool done = 0;
+  
+  while(!done) {
+    if(curr) {
+      stack.push_back(curr);
+      curr = curr->left;
+    } else {
+      if(!stack.empty()) {
+        cout<<stack.back()->val<<" ";
+        curr = stack.back()->right;
+        stack.pop_back();
+      } else done = 1;
+    }
+  }
+}
+
+
+// iterative preorder traversal of the tree.
+// Same as above, just print it very early (PRE!), instead of in the else part
+void preorderit(struct tnode *t){
+  vector<tnode*> stack;
+  struct tnode *curr = t;
+  bool done = 0;
+  
+  while(!done) {
+    if(curr) {
+      cout<<curr->val<<" ";
+      stack.push_back(curr);
+      curr = curr->left;
+    } else {
+      if(!stack.empty()) {
+        //cout<<stack.back()->val<<" ";
+        curr = stack.back()->right;
+        stack.pop_back();
+      } else done = 1;
+    }
+  }
+}
+
+// iterative postorder traversal of the tree.
+// incorrect
+void postorderit(struct tnode *t){
+  vector<tnode*> stack;
+  struct tnode *curr = t;
+  bool done = 0;
+  
+  while(!done) {
+    if(curr) {
+      //cout<<curr->val<<" ";
+      stack.push_back(curr);
+      curr = curr->left;
+    } else {
+      if(!stack.empty()) {
+        //cout<<stack.back()->val<<" ";
+        curr = stack.back()->right;
+        cout<<stack.back()->  val<<" ";
+        stack.pop_back();
+      } else done = 1;
+    }
+  }
+}
+
+int main() {
+  
+  struct tnode *tree = simpleBST();
+  inorder(tree);
+  cout<<endl;
+  inorderit(tree);
+  cout<<endl;
+  preorderit(tree);
+  cout<<endl;
+  postorderit(tree);
+  cout<<endl;
+
+  return 0;
+}
