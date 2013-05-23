@@ -115,6 +115,56 @@ void postorderit(struct tnode *t){
   }
 }
 
+
+
+//Iterative post order traversal code
+// see http://leetcode.com/2010/10/binary-tree-post-order-traversal.html
+/*
+SHORT SUMMARY
+Normal postorder logic. Note that curr is initialized to top of the stack each time, and prev becomes curr at the end of the while loop
+
+ANOTHER WAY FOR POSTORDER(not implemented here): Do a mirrored pre-order (right is evalueted first,
+then left), and then print all the elements in reverse! Done!! :)
+*/
+void postOrderTraversalIterative(BinaryTree *root) {
+  if (!root) return;
+  stack<BinaryTree*> s;
+  s.push(root);
+  BinaryTree *prev = NULL;
+  while (!s.empty()) {
+    BinaryTree *curr = s.top();
+    // we are traversing down the tree
+    if (!prev || prev->left == curr || prev->right == curr) {
+      if (curr->left) {
+        s.push(curr->left);
+      } else if (curr->right) {
+        s.push(curr->right);
+      } else {
+        cout << curr->data << " ";
+        s.pop();
+      }
+    } 
+    // we are traversing up the tree from the left
+    else if (curr->left == prev) {
+      if (curr->right) {
+        s.push(curr->right);
+      } else {
+        cout << curr->data << " ";
+        s.pop();
+      }
+    }
+    // we are traversing up the tree from the right
+    else if (curr->right == prev) {
+      cout << curr->data << " ";
+      s.pop();
+    }
+    prev = curr;  // record previously traversed node
+  }
+}
+
+
+
+
 int main() {
   
   struct tnode *tree = simpleBST();
