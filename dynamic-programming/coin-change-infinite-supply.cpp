@@ -21,6 +21,7 @@ int mincoins(int *arr, int n, int sum) {
 
     for(int i=0; i<n; i++) {
         int result = mincoins(arr, n, sum-arr[i]);
+        // the below if loop can be removed as it is taken care in the second if loop
         if(result==0) {
             dp[sum] = 1;
             return 1;
@@ -41,7 +42,8 @@ int mincoins(int *arr, int n, int sum) {
 int main() {
     int a[] = {2,4};
 //    int b[] = {2,5,5};
-    cout<<mincoins(a, 2, 3000);
+    cout<<mincoins(a, 2, 3001)<<endl;
+    cout<<mincoins(a, 2, 3000)<<endl;
 //    cout<<mincoins(b, 3, 11);
     
     return 0;
