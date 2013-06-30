@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-
+//timepass comment
 int dp[1000000] = {0};
 
 int main() {
