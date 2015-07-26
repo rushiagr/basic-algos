@@ -12,17 +12,17 @@ class Graph {
 public:
     int nodes;
     vector<vector<int> > g;
-    
+
     Graph(int nodes) {
         this->nodes = nodes;
         g = vector< vector<int> >(nodes, vector<int>(nodes, 0));
     }
-    
+
     void addEdge(int from, int to) {
         g[from][to] = 1;
         g[to][from] = 1;
     }
-    
+
     vector<int> getEndsFrom(int startNode) {
         vector<int> returnList;
         for(int i=0; i<this->nodes; i++) {
@@ -36,7 +36,7 @@ public:
 class ColouredGraph : public Graph {
     public:
     vector<int> colour;
-    
+
     ColouredGraph(int nodes) : Graph(nodes) {
         for(int i=0; i<nodes; i++) {
             colour.push_back(WHITE);
@@ -48,7 +48,7 @@ void BFS(ColouredGraph g, int startNode) {
     queue<int> q;
     g.colour[startNode] = GRAY;
     q.push(startNode);
-    
+
     while(!q.empty()) {
         cout<<"Element: "<<q.front()<<endl;
         g.colour[q.front()] = BLACK;
@@ -72,6 +72,6 @@ int main() {
     g.addEdge(2, 4);
     BFS(g, 0);
 //    print_vi(g.colour); //note: as copy of 'g' is passed, would have all 0s.
-    
+
     return 0;
 }
