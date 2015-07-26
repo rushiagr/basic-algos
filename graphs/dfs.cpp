@@ -4,11 +4,10 @@
 #include<vector>
 
 using namespace std;
-#include "../utils/cpputils.h"
 
 /* Directed graph */
 class Graph {
-    public:
+public:
     int nodes;
     vector<vector<int> > g;
 
@@ -27,15 +26,17 @@ class Graph {
             if(g[node][i] == 1)
                 children.push_back(i);
         }
-    //cout<<"children of "<<node<<"are ";
-    //print_vi(children);
         return children;
     }
 };
 
 void DFS(Graph g, int node, int *visited) {
+
+    /* Print current node */
     cout<<node<<'\n';
     visited[node]=1;
+
+    /* Find curret node's children, and run DFS on each of them */
     vector<int> children = g.get_children(node);
     int len = children.size();
 
@@ -47,17 +48,20 @@ void DFS(Graph g, int node, int *visited) {
 }
 
 int main() {
-    Graph g = Graph(4);
-
+    /* Image of graph at http://imgur.com/ZGfGIO0/ */
+    Graph g = Graph(8);
     g.addEdge(0, 1);
     g.addEdge(0, 2);
-    g.addEdge(1, 2);
-    g.addEdge(2, 0);
     g.addEdge(2, 3);
-    g.addEdge(3, 3);
+    g.addEdge(2, 4);
+    g.addEdge(1, 6);
+    g.addEdge(1, 7);
+    g.addEdge(3, 5);
+    g.addEdge(4, 5);
+    g.addEdge(6, 5);
+    g.addEdge(7, 6);
 
-    int *visited = (int *)malloc(4 * sizeof(int));
-    //int visited[4] = {0,0,0,0};
+    int *visited = (int *)malloc(8 * sizeof(int));
     DFS(g, 0, visited);
 
     return 0;
