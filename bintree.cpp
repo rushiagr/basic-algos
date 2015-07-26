@@ -19,6 +19,13 @@ struct tnode* newtnode(int value) {
 }
 
 // simple binary search tree
+//              20
+//             /  \
+//            8   22
+//           / \
+//          4  12
+//            /  \
+//           10  14
 struct tnode *simpleBST() {
   struct tnode *root = newtnode(20);
   root->left = newtnode(8);
@@ -33,10 +40,10 @@ struct tnode *simpleBST() {
 
 // recursive inorder traversal of the tree
 void inorder(struct tnode *t) {
-  if(t->left) 
+  if(t->left)
     inorder(t->left);
   printf("%d ", t->val);
-  if(t->right) 
+  if(t->right)
     inorder(t->right);
 }
 
@@ -54,7 +61,7 @@ void inorderit(struct tnode *t){
   vector<tnode*> stack;
   struct tnode *curr = t;
   bool done = 0;
-  
+
   while(!done) {
     if(curr) {
       stack.push_back(curr);
