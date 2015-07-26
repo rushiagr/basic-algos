@@ -1,0 +1,12 @@
+# Vector of size 10
+    vector<int> myvector = vector<int>(10)
+
+# Array pointer, and array initialization
+    int *arr = (int *)malloc(23 * sizeof(int));
+
+# To pass this array to a function:
+Function definition:
+    void funcdef(int *a)
+
+Calling this function:
+    funcdef(somearr)
