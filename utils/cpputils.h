@@ -44,4 +44,3 @@ void print_arr(int**a, int m, int n) {
 #define fk(a) fr( k, ( a ) )
 #define co(a,b,c) fi(a)cout<< b i c<<" "
 #define NL cout<<endl;
-
