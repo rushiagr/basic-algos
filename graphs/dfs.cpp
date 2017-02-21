@@ -30,10 +30,13 @@ public:
     }
 };
 
-void DFS(Graph g, int node, int *visited) {
+bool DFS(Graph g, int node, int *visited) {
 
     /* Print current node */
     cout<<node<<'\n';
+    if (visited[node] == 1)
+        return true;
+
     visited[node]=1;
 
     /* Find curret node's children, and run DFS on each of them */
@@ -43,8 +46,10 @@ void DFS(Graph g, int node, int *visited) {
     for (int i=0; i<len; i++){
         if (visited[children[i]] == 0) {
             DFS(g, children[i], visited);
+            visited[children[i]]=0;
         }
     }
+    return false;
 }
 
 int main() {
@@ -52,17 +57,17 @@ int main() {
     Graph g = Graph(8);
     g.addEdge(0, 1);
     g.addEdge(0, 2);
-    g.addEdge(2, 3);
+    g.addEdge(3, 2);
     g.addEdge(2, 4);
     g.addEdge(1, 6);
     g.addEdge(1, 7);
-    g.addEdge(3, 5);
+    g.addEdge(5, 3);
     g.addEdge(4, 5);
     g.addEdge(6, 5);
     g.addEdge(7, 6);
 
     int *visited = (int *)malloc(8 * sizeof(int));
-    DFS(g, 0, visited);
+    cout<<"a"<<DFS(g, 0, visited);
 
     return 0;
 }

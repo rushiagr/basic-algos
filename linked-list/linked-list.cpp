@@ -40,14 +40,19 @@ void print_linked_list(Node *head) {
 Node* reverse_linked_list(Node *head) {
     Node *current = head;
     Node *new_head = NULL;
-    
+
     while(current) {
         Node *temp = current;
         current = current->next;
         temp->next = new_head;
         new_head = temp;
     }
-    
+
+    // Explanation:
+    // - current is holding the head of remaining original Linkedlist
+    // - new_head is holding the head of new Linkedlist
+    // - temp is the head of remaining Linkedlist, which we first remove from
+    // this Linkedlist and then attach as head of new Linkedlist
     return new_head;
 }
 
