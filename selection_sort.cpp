@@ -2,11 +2,11 @@
 #include<algorithm>
 using namespace std;
 
-int* bubble_sort(int* arr, int len) {
+int* selection_sort(int* arr, int len) {
     for(int i=0; i<len; i++) {
-        int min = i;
+        int min_index = i;
         for(int j=i; j<len; j++) {
-            min=arr[j]<arr[min]?j:min;
+            min_index=arr[j]<arr[min]?j:min;
         }
         swap(arr[i], arr[min]);
     }
