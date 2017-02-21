@@ -22,7 +22,7 @@ Node* linked_list_from_vector(vector<int> input) {
         node->next = head;
         head = node;
     }
-    
+
     return head;
 }
 
@@ -59,12 +59,12 @@ Node* reverse_linked_list_recursive(Node *head) {
         return NULL;
     if(head->next==NULL)
         return head;
-    
+
     Node *remaining_list = head->next;
     remaining_list = reverse_linked_list(remaining_list);
     head->next->next=head;
     head->next=NULL;
-    
+
     return remaining_list;
 }
 
@@ -75,15 +75,15 @@ int main() {
     inp.push_back(9);
     inp.push_back(11);
     inp.push_back(8);
-    
+
     Node *ll = linked_list_from_vector(inp);
     print_linked_list(ll);
-    
+
     ll = reverse_linked_list(ll);
-    
+
     print_linked_list(ll);
 
     ll = reverse_linked_list_recursive(ll);
-    
+
     print_linked_list(ll);
 }

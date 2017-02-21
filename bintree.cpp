@@ -83,7 +83,7 @@ void preorderit(struct tnode *t){
   vector<tnode*> stack;
   struct tnode *curr = t;
   bool done = 0;
-  
+
   while(!done) {
     if(curr) {
       cout<<curr->val<<" ";
@@ -105,7 +105,7 @@ void postorderit(struct tnode *t){
   vector<tnode*> stack;
   struct tnode *curr = t;
   bool done = 0;
-  
+
   while(!done) {
     if(curr) {
       //cout<<curr->val<<" ";
@@ -130,7 +130,7 @@ void postorderit(struct tnode *t){
 SHORT SUMMARY
 Normal postorder logic. Note that curr is initialized to top of the stack each time, and prev becomes curr at the end of the while loop
 
-ANOTHER WAY FOR POSTORDER(not implemented here): Do a mirrored pre-order (right is evalueted first,
+ANOTHER WAY FOR POSTORDER(not implemented here): Do a mirrored pre-order (right is evaluated first,
 then left), and then print all the elements in reverse! Done!! :)
 */
 void postOrderTraversalIterative(BinaryTree *root) {
@@ -150,7 +150,7 @@ void postOrderTraversalIterative(BinaryTree *root) {
         cout << curr->data << " ";
         s.pop();
       }
-    } 
+    }
     // we are traversing up the tree from the left
     else if (curr->left == prev) {
       if (curr->right) {
@@ -173,7 +173,7 @@ void postOrderTraversalIterative(BinaryTree *root) {
 
 
 int main() {
-  
+
   struct tnode *tree = simpleBST();
   inorder(tree);
   cout<<endl;

@@ -27,10 +27,10 @@ def infix_to_postfix(inf_str):
     postf_str = ''
     stack = []
 #    pdb.set_trace()
-    
-            
+
+
     print len(inf_str)
-    
+
     while len(inf_str) is not 0:
         print 'aa. stack:', stack, ' poststr: ', postf_str
         token, inf_str = get_token(inf_str)
@@ -55,10 +55,10 @@ def infix_to_postfix(inf_str):
                     postf_str += stack.pop()
                     print 'post3', postf_str
                 stack.append(token)
-    
+
     while len(stack) is not 0:
         postf_str += stack.pop()
-    
+
     return postf_str
 
 expressions = ["1+2*3-(6*5-4)",
@@ -70,6 +70,3 @@ print 'print'
 for exp in expressions:
     print infix_to_postfix(exp)
     print '\n'
-
-
-

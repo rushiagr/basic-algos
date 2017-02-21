@@ -3,8 +3,10 @@ using namespace std;
 
 
 /*
- * Given a set of coins (each coin can be used multiple times), and a change amount, return the minimum number of coins required to make the change. Return -1 if not possible to make change. 
- * To make the problem non-dp, just remove the lines which are concerned with the array 'dp'
+ * Given a set of coins (each coin can be used multiple times), and a change
+ * amount, return the minimum number of coins required to make the change.
+ * Return -1 if not possible to make change.  To make the problem non-dp, just
+ * remove the lines which are concerned with the array 'dp'
  */
 int mincoins(int *arr, int n, int sum) {
 

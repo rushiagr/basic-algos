@@ -17,7 +17,7 @@ void quick_sort(int *a, int start, int end) {
     m=r=start;
     int random_id = (rand()%(end-start))+start;
     swap(a[random_id], a[end-1]);
-    
+
     int pivot = a[end-1];
     while(r < end-1) {
         if(a[r]<pivot) {
@@ -27,9 +27,9 @@ void quick_sort(int *a, int start, int end) {
         }
         r++;
     }
-    
+
     swap(a[m], a[end-1]);
-    
+
     quick_sort(a, start, m);
     quick_sort(a, m+1, end);
 }
@@ -41,6 +41,6 @@ int main() {
     quick_sort(b, 0, 15);
     print_arr(a, 11);
     print_arr(b, 15);
-    
+
     return 0;
 }
