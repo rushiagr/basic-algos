@@ -15,7 +15,7 @@ public:
         top = 0;
         this->size = size;
     }
-    
+
     bool push(int val) {
         if (top==size)
             return false;
@@ -48,6 +48,6 @@ int main() {
     s.push(44);
     for(int i=0; i<5; i++)
         cout<<s.pop()<<" "<<s.isempty()<<endl;
-    
+
     return 0;
 }
