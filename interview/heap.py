@@ -26,7 +26,6 @@ class MinHeap(object):
     def insert(self, elem):
         self.contents.append(elem)
         parent_index = self._parent_index(len(self.contents)-1)
-        # if parent_index:
         self.heapify(parent_index)
 
     def heapify(self, index):
