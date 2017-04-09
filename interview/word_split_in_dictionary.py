@@ -31,6 +31,28 @@ def string_in_dict2(string, dictionary):
             return True
     return False
 
+dp = {}
+
+def string_in_dict3(string, dictionary):
+    # split each string into two parts, and check if first part is in the
+    # dictionary, and recurse only on second part. Also maintain a memoization
+    # table where you store if the string is splittable or not.
+    # worst case complexity: n^2
+    global dp
+    if string in dictionary or dp.get(string):
+        return True
+    for i in range(1, len(string)):
+        first = string[:i]
+        rest = string[i:]
+        if first in dictionary:
+            if rest in dp.keys():
+                return dp[rest]
+            else:
+                val = string_in_dict3(rest, dictionary)
+                dp[rest] = val
+                return val
+    return False
+
 if __name__ == '__main__':
     d = ['list', 'linked']
     s = 'linkedlist'
@@ -68,3 +90,28 @@ if __name__ == '__main__':
     'aaaaaaaaa', 'aaaaaaaaaa', 'aaaaaaaaaaa', 'aaaaaaaaaaaa']
     s = 'aaaaaaaaaaaab'
     assert False == string_in_dict2(s, d)
+
+    d = ['list', 'linked']
+    s = 'linkedlist'
+    assert True == string_in_dict3(s, d)
+    d = ['list', 'linkedlist']
+    s = 'linkedlistlinked'
+    assert False == string_in_dict3(s, d)
+    d = ['list', 'linked', 'my']
+    s = 'linkedmylist'
+    assert True == string_in_dict3(s, d)
+    d = ['list', 'linkedlist', 'my']
+    s = 'linkedmylist'
+    assert False == string_in_dict3(s, d)
+    d = ['list', 'linkedlist', 'my', 'linked']
+    s = 'linkedmylist'*200
+    assert True == string_in_dict3(s, d)
+    d = ['list', 'linkedlist', 'my', 'linked']
+    s = 'abcdefghij'*200
+    assert False == string_in_dict3(s, d)
+
+    dp = {}
+    d = ['a', 'aa', 'aaa', 'aaaa', 'aaaaa', 'aaaaaa', 'aaaaaaa', 'aaaaaaaa',
+    'aaaaaaaaa', 'aaaaaaaaaa', 'aaaaaaaaaaa', 'aaaaaaaaaaaa']
+    s = 'aaaaaaaaaaaab'
+    assert False == string_in_dict3(s, d)
