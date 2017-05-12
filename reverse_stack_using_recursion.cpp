@@ -9,18 +9,18 @@ void putAtDepth(stack<int>* s, int e, int depth) {
 
   if(depth == 1) {
     int holder = s->top();
-    s->pop(); 
+    s->pop();
     s->push(e);
     s->push(holder);
   }
-  
+
   else {
     int holder = s->top();
     s->pop();
     putAtDepth(s,e,depth-1);
     s->push(holder);
   }
-  
+
 }
 
 void reverse(stack<int>*s) {
@@ -42,7 +42,7 @@ void printStack(stack<int>* s){
         s->push(temp.top());
         temp.pop();
     }
-    
+
     cout<<endl;
 }
 

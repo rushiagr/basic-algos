@@ -24,7 +24,7 @@ int lcsl2(string s1, string s2) {
     int x = s1.length();
     int y = s2.length();
     int mat[100][100];
-    
+
     for(int i=1; i<=x; i++) {
         for(int j=1; j<=y; j++) {
             if(s1[i-1]==s2[j-1])
@@ -45,7 +45,7 @@ string lcs(string s1, string s2) {
     }
     cout<<s1<<" "<<s2<<endl;
     vector<int> mat(s1.length(), -1);
-    
+
     for(int i=mat.size()-1; i>=0; i--) {
         // find the last occurence IN S2 of same char in the current string
         int last_occurence_index = s2.length();
@@ -57,12 +57,12 @@ string lcs(string s1, string s2) {
             }
         }
         print_vi(mat);
-        
+
         if (last_occurence_index <= 0) {
-            cout<<"last"<<last_occurence_index<<endl;    
+            cout<<"last"<<last_occurence_index<<endl;
             continue;
         }
-        
+
         for(int j=last_occurence_index-1; j>=0; j--) {
                 cout<<"ij:"<<i<<" "<<j<<endl;
             if (s1[i]==s2[j]) {
@@ -72,10 +72,10 @@ string lcs(string s1, string s2) {
             }
         }
     }
-    
-    
+
+
     string ans = "";
-    
+
     for(int i=0; i<mat.size(); i++) {
         if(mat[i]>-1) {
             ans += s1[i];

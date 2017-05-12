@@ -39,11 +39,11 @@ void max_heapify(int *a, int n, int id) {
             max_heapify(a,n,left_id);
         }
     }
-    
+
 }
 
 void build_max_heap(int *a, int n) {
-    // Last element in the array which has atleast one children. Need to call 
+    // Last element in the array which has atleast one children. Need to call
     // max_heapify() procedure from this element in reverse
     int last_id = (n-2)/2;
     for(int i=last_id; i>=0; i--) {
@@ -63,10 +63,10 @@ int main() {
     int a[10] = {1,2,3,4,5,6,7,8,9,10};
     build_max_heap(a,10);
     print_arr(a, 10);
-    
+
     int b[10] = {10,9,8,7,6,5,4,3,2,1};
     heap_sort(b, 10);
     print_arr(b, 10);
-    
+
     return 0;
 }

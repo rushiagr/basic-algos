@@ -33,6 +33,7 @@ def string_in_dict2(string, dictionary):
 
 dp = {}
 
+# NOTE: THIS SOLUTION IS WRONG!!!! Last ASSERTION FAILS
 def string_in_dict3(string, dictionary):
     # split each string into two parts, and check if first part is in the
     # dictionary, and recurse only on second part. Also maintain a memoization
@@ -46,7 +47,9 @@ def string_in_dict3(string, dictionary):
         rest = string[i:]
         if first in dictionary:
             if rest in dp.keys():
-                return dp[rest]
+                val = dp[rest]
+                if val:
+                    return True
             else:
                 val = string_in_dict3(rest, dictionary)
                 dp[rest] = val
@@ -115,3 +118,8 @@ if __name__ == '__main__':
     'aaaaaaaaa', 'aaaaaaaaaa', 'aaaaaaaaaaa', 'aaaaaaaaaaaa']
     s = 'aaaaaaaaaaaab'
     assert False == string_in_dict3(s, d)
+
+    dp = {}
+    d = ['one', 'onetwo', 'three', 'four', 'five']
+    s = 'onetwothreefourfivefourfive'
+    assert True == string_in_dict3(s, d)
