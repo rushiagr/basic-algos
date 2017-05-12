@@ -2,6 +2,10 @@
 // getting any element from the data structure at random.
 //
 // Run as: g++ <filename>.cpp -std=gnu++11
+//
+// Solution: keep incoming integer in a hashmap and also in an
+// auto-expanding-array, where key is the integer, and value is it's position
+// in the array. Double the size of array as soon as it becomes full.
 
 #include<iostream>
 #include <tr1/unordered_map>
