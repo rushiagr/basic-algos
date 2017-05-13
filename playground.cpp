@@ -16,13 +16,16 @@ int main() {
     int arr1[2] = {};       // empty array
     int arr2[2] = {1, 2};   // filled array
     int arr3[2] = {1};      // half-filled array
-    int arr4[] = {1, 2};      // filled array, auto-size-detection
+    int arr4[] = {1, 2, 0, 4};      // filled array, auto-size-detection
 
     // pass array to function. See start for function definition
     array_printer(arr4, 2);
 
     // array of strings
     string arr5[] = {"one", "two", "three"};
+
+    // sorting array
+    sort(arr4, arr4 + 4);
 
     /********** POINTERS ******/
     int *ptr1;           // pointer to an integer
