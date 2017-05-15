@@ -1,7 +1,7 @@
 // question: Given an array of integers, find if there are three distinct
 // numbers in the array whose sum is 0
 
-// pseudocode
+// pseudocode (complexity: O(n^2)
 // if array length less than 3, return null
 // sort the array
 // for all elements i in array

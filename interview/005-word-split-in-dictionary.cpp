@@ -3,6 +3,11 @@
 #include <unordered_map>
 using namespace std;
 
+// Given a string and a word dictionary, tell if that string is composed of
+// words found in the dictionary. E.g. string is 'listlinkedlistarray' and
+// dictionary contains words 'linked', 'linkedlist' and 'array'. The answer is
+// 'no' in this case.
+
 unordered_map<string, bool> dict;
 unordered_map<string, bool> memtable;
 
