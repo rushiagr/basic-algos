@@ -10,6 +10,10 @@ void array_printer(int arr[], int length) {
     for (int i=0; i<length; i++)
         cout<<arr[i]<<endl;
 }
+void array_printer2(int* arr, int length) { // works exactly same as above
+    for (int i=0; i<length; i++)
+        cout<<arr[i]<<endl;
+}
 
 int main() {
     /******** ARRAYS *******/
@@ -20,6 +24,7 @@ int main() {
 
     // pass array to function. See start for function definition
     array_printer(arr4, 2);
+    array_printer2(arr4, 2);
 
     // array of strings
     string arr5[] = {"one", "two", "three"};
@@ -92,14 +97,18 @@ int main() {
 
     cout<<len<<endl<<sub<<endl<<sub2<<endl<<sub3<<endl<<sub4<<endl<<pos<<endl<<pos2<<endl;
 
+
     /******** VECTORS *******/
     vector <int> myvec;
     myvec.push_back(1);             // insert
     myvec.push_back(2);             // insert
+    myvec.push_back(3);             // insert
     int lastval = myvec.back();     // get last value
     myvec.pop_back();               // remove last value
     int size = myvec.size();        // get size, 2 in this case
     bool is_empty = myvec.empty();  // check if empty
+    myvec.erase(myvec.begin()+1);   // delete second value
+
 
     /******** UNORDERED MAP (HASH TABLE) *******/
     unordered_map<string, string> hashmap;
@@ -125,6 +134,7 @@ int main() {
     } else {
         ;   // not present
     }
+    cout<<endl;
 
     // erase
     hashmap.erase("key1");
@@ -134,8 +144,41 @@ int main() {
     unordered_map<string, string> hashmap2;
     hashmap2 = {{"key1", "value1"}, {"key2", "value2"}};
 
+    /******** HEAPS *********/
+    // create a MAX heap
+    vector<int> heap;
+    make_heap(heap.begin(), heap.end());
+    heap.push_back(1);
+    push_heap(heap.begin(), heap.end());     // insert 1
+    heap.push_back(2);
+    push_heap(heap.begin(), heap.end());     // insert 2
+    heap.push_back(3);
+    push_heap(heap.begin(), heap.end());     // insert 3
+    heap.push_back(4);
+    push_heap(heap.begin(), heap.end());     // insert 4
+    for (int i=0; i<heap.size(); i++)
+        cout<<heap[i]<<endl;
 
+    // Create a MIN heap
+    // Note that for ALL heap operations, you need to specify 'greater<int>()'
+    vector<int> minheap;
+    make_heap(minheap.begin(), minheap.end(), greater<int>()); // don't forget '()'
+    minheap.push_back(4);
+    push_heap(minheap.begin(), minheap.end(), greater<int>());     // insert 1
+    minheap.push_back(3);
+    push_heap(minheap.begin(), minheap.end(), greater<int>());     // insert 2
+    minheap.push_back(2);
+    push_heap(minheap.begin(), minheap.end(), greater<int>());     // insert 3
+    minheap.push_back(1);
+    push_heap(minheap.begin(), minheap.end(), greater<int>());     // insert 4
 
+    for (int i=0; i<minheap.size(); i++)
+        cout<<minheap[i]<<endl;
 
+    // pop top element. Actually, it just places it at the end of underlying vector
+    pop_heap(minheap.begin(), minheap.end(), greater<int>());
+    minheap.pop_back();     // now actually pop
+
+    for (int i=0; i<minheap.size(); i++)
+        cout<<minheap[i]<<endl;
 }
-
