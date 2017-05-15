@@ -56,7 +56,6 @@ vector<int> find_sliding_windows(int array[], int length, int window_size) {
         push_heap(heap.begin(), heap.end());
         while (true) {
             int max_from_heap = heap[0];
-        vector<int> blah = hashmap[max_from_heap];
             int max_from_heap_idx = hashmap[max_from_heap][0];
             if (max_from_heap_idx < start) {
                 hashmap[max_from_heap].erase(hashmap[max_from_heap].begin());
