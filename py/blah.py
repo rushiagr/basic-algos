@@ -1,0 +1,11 @@
+# coding: utf-8
+get_ipython().magic(u'history')
+get_ipython().magic(u'hist')
+get_ipython().magic(u'1')
+get_ipython().magic(u'history')
+get_ipython().magic(u'history')
+line  = i.readline()
+line  = i.readline()
+get_ipython().magic(u'history')
+get_ipython().magic(u'save')
+get_ipython().magic(u'save blah')

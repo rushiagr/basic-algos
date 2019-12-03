@@ -8,7 +8,7 @@ using namespace std;
 // dictionary contains words 'linked', 'linkedlist' and 'array'. The answer is
 // 'no' in this case.
 
-unordered_map<string, bool> dict;
+unordered_map<string, bool> dict;       // for only return true or false
 unordered_map<string, bool> memtable;
 
 /* Working code. Note that some edge cases can be merged into the main 'for'

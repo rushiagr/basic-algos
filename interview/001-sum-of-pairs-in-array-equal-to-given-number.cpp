@@ -22,7 +22,7 @@
 
 // pseudocode for find_pair_sum_hash (order: n)
 // for each element in array
-//      see if hashtable contains given number - current element
+//      see if hashtable contains (given number - current element)
 //      if yes, return answer
 //      if no, insert current number in hash and go to next element
 // if we reach here, return null
@@ -73,6 +73,23 @@ vector<int> find_pair_sum_hash(int array[], int array_length, int sum) {
     }
     return answers;
 }
+
+// leetcode answer
+vector<int> twoSum(vector<int>& nums, int target) {
+    vector<int> ans;
+    unordered_map<int, int> hashmap;
+    for (int i=0; i<nums.size(); i++) {
+        if (hashmap.find(target-nums[i]) != hashmap.end()) {
+            ans.push_back(hashmap[target-nums[i]]);
+            ans.push_back(i);
+            return ans;
+        } else {
+            hashmap[nums[i]] = i;
+        }
+    }
+    return ans;
+}
+
 
 int main() {
     // First implementation

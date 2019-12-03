@@ -26,6 +26,19 @@ Node* linked_list_from_vector(vector<int> input) {
     return head;
 }
 
+Node* linked_list_from_array(int *arr, int n) {
+    Node *head = NULL;
+
+    for(int i=0; i<n; i++) {
+        Node *node = new Node;
+        node->data = arr[i];
+        node->next = head;
+        head = node;
+    }
+
+    return head;
+}
+
 
 void print_linked_list(Node *head) {
     Node *current_node = head;
@@ -73,6 +86,19 @@ Node* reverse_linked_list_recursive(Node *head) {
     return remaining_list;
 }
 
+// delete second, fourth, etc nodes if they exist
+Node* delete_alternate_nodes(Node* root) {
+    if (!root)
+        return root;
+    Node* curr = root;
+    while (curr && curr->next) {
+        Node* temp = curr->next;
+        curr->next = curr->next->next;
+        delete temp;
+        curr = curr->next;
+    }
+    return root;
+}
 
 int main() {
     vector<int> inp;
@@ -90,5 +116,12 @@ int main() {
 
     ll = reverse_linked_list_recursive(ll);
 
+    print_linked_list(ll);
+
+    int arr[] = {1, 2, 3, 4, 5};
+    int arr2[] = {1, 2, 3, 4, 5, 6};
+    ll = delete_alternate_nodes(linked_list_from_array(arr, 5));
+    print_linked_list(ll);
+    ll = delete_alternate_nodes(linked_list_from_array(arr2, 6));
     print_linked_list(ll);
 }

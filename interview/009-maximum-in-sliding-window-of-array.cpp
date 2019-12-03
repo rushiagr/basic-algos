@@ -6,7 +6,7 @@ using namespace std;
 // question: given an array of integers, and a length of sliding window 'k',
 // find maximum elements in each sliding window
 
-// complexity: O(n) comparisons. O(n) auxiliary space.
+// complexity: O(nlogk) comparisons. O(n) auxiliary space.
 
 // solution: as soon as we move forward, add the element to the heap. Also,
 // maintain a hashmap where key is the element, and value is a vector of

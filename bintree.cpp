@@ -37,6 +37,39 @@ struct tnode *simpleBST() {
   return root;
 }
 
+// simple binary search tree TWO
+//              10
+//             /  \
+//            11   -20
+//           / \   /\
+//          15 12  0 9
+//                /\
+//               16 18
+struct tnode *simpleBST3() {
+  struct tnode *root = newtnode(10);
+  root->left = newtnode(11);
+  root->right = newtnode(-20);
+  root->left->left = newtnode(15);
+  root->left->right = newtnode(12);
+  root->right->left = newtnode(0);
+  root->right->right = newtnode(9);
+  root->right->left->left = newtnode(16);
+  root->right->left->right = newtnode(18);
+  return root;
+}
+
+struct tnode *simpleBST2() {
+  struct tnode *root = newtnode(10);
+  root->left = newtnode(5);
+  root->right = newtnode(19);
+  root->left->left = newtnode(2);
+  root->left->right = newtnode(11);
+  root->left->left->right = newtnode(8);
+  root->right->left = newtnode(-2);
+  root->right->right = newtnode(6);
+  return root;
+}
+
 
 // recursive inorder traversal of the tree
 void inorder(struct tnode *t) {
@@ -99,32 +132,49 @@ void preorderit(struct tnode *t){
   }
 }
 
-// iterative postorder traversal of the tree.
-// incorrect
-void postorderit(struct tnode *t){
-  vector<tnode*> stack;
-  struct tnode *curr = t;
-  bool done = 0;
-
-  while(!done) {
-    if(curr) {
-      //cout<<curr->val<<" ";
-      stack.push_back(curr);
-      curr = curr->left;
-    } else {
-      if(!stack.empty()) {
-        //cout<<stack.back()->val<<" ";
-        curr = stack.back()->right;
-        cout<<stack.back()->  val<<" ";
-        stack.pop_back();
-      } else done = 1;
+// correct and working solution
+void postorderit2(struct tnode *t){
+    vector<tnode*> stack;
+    struct tnode *curr = t;
+    while (curr || !stack.empty()) {
+        if (curr) {
+            stack.push_back(curr);
+            curr = curr->left;
+        } else {
+            struct tnode *temp = stack.back()->right;
+            if (temp) {
+                curr = temp;
+            } else {
+                temp = stack.back();
+                stack.pop_back();
+                cout<<temp->val<<" ";
+                while (!stack.empty() && temp == stack.back()->right) {
+                    temp = stack.back();
+                    stack.pop_back();
+                    cout<<temp->val<<" ";
+                }
+            }
+        }
     }
-  }
 }
 
+/* POST ORDER TRAVERSAL
+Method 1: Use two stacks.
+Algo
+    Put root in stack1
+    While stack1 is not empty:
+        pop stack1 top element
+        add it to stack2
+        if it has left child, push it to stack1
+        if it has right child, push it to stack1
+    pop out elements from stack2 and print as you are popping
 
 
-//Iterative post order traversal code
+
+
+ */
+
+//Iterative post order traversal code, copied from below now-defunct link
 // see http://leetcode.com/2010/10/binary-tree-post-order-traversal.html
 /*
 SHORT SUMMARY
@@ -133,37 +183,39 @@ Normal postorder logic. Note that curr is initialized to top of the stack each t
 ANOTHER WAY FOR POSTORDER(not implemented here): Do a mirrored pre-order (right is evaluated first,
 then left), and then print all the elements in reverse! Done!! :)
 */
-void postOrderTraversalIterative(BinaryTree *root) {
-  if (!root) return;
-  stack<BinaryTree*> s;
-  s.push(root);
-  BinaryTree *prev = NULL;
+
+void postOrderTraversalIterative(struct tnode *root) {
+  if (!root)
+      return;
+  vector<tnode*> s;
+  s.push_back(root);
+  tnode *prev = NULL;
   while (!s.empty()) {
-    BinaryTree *curr = s.top();
+    struct tnode *curr = s.back();
     // we are traversing down the tree
     if (!prev || prev->left == curr || prev->right == curr) {
       if (curr->left) {
-        s.push(curr->left);
+        s.push_back(curr->left);
       } else if (curr->right) {
-        s.push(curr->right);
+        s.push_back(curr->right);
       } else {
-        cout << curr->data << " ";
-        s.pop();
+        cout << curr->val << " ";
+        s.pop_back();
       }
     }
     // we are traversing up the tree from the left
     else if (curr->left == prev) {
       if (curr->right) {
-        s.push(curr->right);
+        s.push_back(curr->right);
       } else {
-        cout << curr->data << " ";
-        s.pop();
+        cout << curr->val << " ";
+        s.pop_back();
       }
     }
     // we are traversing up the tree from the right
     else if (curr->right == prev) {
-      cout << curr->data << " ";
-      s.pop();
+      cout << curr->val << " ";
+      s.pop_back();
     }
     prev = curr;  // record previously traversed node
   }
@@ -175,13 +227,19 @@ void postOrderTraversalIterative(BinaryTree *root) {
 int main() {
 
   struct tnode *tree = simpleBST();
+  struct tnode *tree2 = simpleBST2();
+  struct tnode *tree3 = simpleBST3();
   inorder(tree);
   cout<<endl;
   inorderit(tree);
   cout<<endl;
   preorderit(tree);
   cout<<endl;
-  postorderit(tree);
+  preorderit(tree3);
+  cout<<endl;
+  postorderit2(tree);
+  cout<<endl;
+  postOrderTraversalIterative(tree);
   cout<<endl;
 
   return 0;

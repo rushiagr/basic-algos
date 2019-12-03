@@ -4,7 +4,7 @@ def matprint(m):
     """prints matrix m"""
     for i in len(m):
         print str(m).replace(',',' ').replace('[', ' ').replace(']', ' ')
-            
+
 
 # Recursive, no data shared, very poor performance
 def lcs_length(string1, string2):
@@ -14,10 +14,10 @@ def lcs_length(string1, string2):
     if string1[-1] == string2[-1]:
         return (1 + lcs_length(string1[:-1], string2[:-1]))
     else:
-        return max(lcs_length(string1, string2[:-1]), 
+        return max(lcs_length(string1, string2[:-1]),
                     lcs_length(string1[:-1], string2))
-                    
-                    
+
+
 # Example case: lcs_length('agrmujahiddeen', 'muddinmuhammad') returns 5
 
 def lcs_length2(str1, str2):
@@ -32,8 +32,8 @@ def lcs_length2(str1, str2):
             else:
                 matrix[i][j] = max(matrix[i][j-1], matrix[i-1][j])
             print matrix
-                
+
     return matrix[x][y]
-    
+
 #print lcs_length2('agrmujahiddeen', 'muddinmuhammadeen')
 print lcs_length2('banana', 'taranaaa')
